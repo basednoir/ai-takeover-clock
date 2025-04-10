@@ -60,4 +60,109 @@ h1 {
 }
 
 /* Specific counter colors */
-#jobs-automated
+#jobs-automated-counter {
+    color: #ff4136; /* Neon Red */
+}
+
+#jobs-created-counter {
+    color: #39ff14; /* Neon Green */
+}
+
+#compute-power-counter {
+    color: #ff851b; /* Neon Orange */
+}
+
+#ai-investment-counter {
+    color: #FFFF33; /* Neon Yellow */
+}
+
+#ai-patents-counter {
+    color: #FF33FF; /* Neon Pink */
+}
+
+#ai-content-counter {
+    color: #33FFFF; /* Neon Light Blue */
+}
+
+/* ---- Styles for Pulse Indicator ---- */
+.pulse-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50px;
+    margin-top: 10px;
+}
+
+#ethical-pulse-indicator {
+    width: 30px;
+    height: 30px;
+    background-color: #FF851B; /* Neon Orange */
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(255, 133, 27, 0.7);
+    animation: pulseAnimation 3s ease-in-out infinite;
+}
+/* ---- End of Pulse Indicator Styles ---- */
+
+.impact-section label {
+     display: block;
+     margin-bottom: 10px;
+     color: #bbbbbb;
+     font-weight: bold;
+}
+
+.impact-section input[type="text"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    min-width: 200px; /* Give input some space */
+    margin-bottom: 10px; /* Stack on smaller screens */
+}
+
+.impact-section button {
+    padding: 10px 15px;
+    background-color: #00ffde; /* Neon cyan */
+    color: #000000;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px; /* Stack on smaller screens */
+}
+
+.impact-section button:hover {
+    background-color: #39ff14; /* Neon Green on hover */
+}
+
+#impact-result {
+    margin-top: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    min-height: 1.5em; /* Reserve space */
+}
+
+footer {
+    margin-top: 40px;
+    color: #555555;
+    font-size: 0.9em;
+}
+
+/* ---- Pulse Animation Definition ---- */
+@keyframes pulseAnimation {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 133, 27, 0.7); /* Orange glow, start transparent */
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 10px 20px rgba(255, 133, 27, 0); /* Orange glow, expand and fade out */
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 133, 27, 0); /* End transparent */
+    }
+}
+/* ---- End of File ---- */
