@@ -4,36 +4,75 @@ document.addEventListener('DOMContentLoaded', () => {
     const jobsCreatedElem = document.getElementById('jobs-created-counter');
     const computePowerElem = document.getElementById('compute-power-counter');
 
-    // --- Initial Values & Rates ---
-    let jobsAutomated = 0; // Start from 0 or a base number if desired
-    let jobsCreated = 0;   // Start from 0 or a base number if desired
-    let computePower = 1e15; // 1 * 10^15 FLOPS
+    // --- Configuration ---
+    // 1. Define the Epoch Date (Using Jan 1st, 2025 UTC)
+    const epochDate = new Date(Date.UTC(2025, 0, 1, 0, 0, 0)); // Set to Jan 1, 2025
 
-    const jobsAutomatedRatePerSecond = 47;
-    const jobsCreatedRatePerSecond = 31;
-    const computePowerIncreasePerSecond = 1e13; // 1 * 10^13 FLOPS/sec
+    // 2. Define Base Values at Epoch Date (Updated based on WEF 2025 report context)
+    const baseJobsAutomated = 0; // Base set to 0 for the 2025-2030 measurement period
+    const baseJobsCreated = 0;   // Base set to 0 for the 2025-2030 measurement period
+    const baseComputePower = 1e15; // Base FLOPS at epoch (Using previous value for now)
 
-    // --- Update Interval (milliseconds) ---
-    const updateInterval = 100; // Update 10 times per second for smoother visual
+    // 3. Define Rates Per Second (Updated based on WEF 2025 report)
+    const jobsAutomatedRatePerSecond = 0.486; // WEF Displacement Rate 2025-2030
+    const jobsCreatedRatePerSecond = 0.898; // WEF Creation Rate 2025-2030
+    const computePowerIncreasePerSecond = 1e13; // Using previous value for now
 
-    // --- Counter Update Logic ---
+    // 4. Update Interval (milliseconds)
+    const updateInterval = 100; // Update 10 times per second
+
+    // --- Calculation Logic ---
+    function calculateCurrentValues() {
+        const now = new Date();
+        // Ensure 'now' is treated as UTC if epochDate is UTC, or convert both to local time consistently.
+        // getTime() returns milliseconds since Jan 1, 1970 UTC, so difference is inherently UTC-based.
+        const elapsedMilliseconds = now.getTime() - epochDate.getTime();
+        const elapsedSeconds = elapsedMilliseconds / 1000;
+
+        // Calculate current estimated values based on elapsed time
+        // Ensure elapsedSeconds is not negative if clock is slightly ahead of epochDate
+        const positiveElapsedSeconds = Math.max(0, elapsedSeconds);
+
+        const currentJobsAutomated = baseJobsAutomated + (positiveElapsedSeconds * jobsAutomatedRatePerSecond);
+        const currentJobsCreated = baseJobsCreated + (positiveElapsedSeconds * jobsCreatedRatePerSecond);
+        const currentComputePower = baseComputePower + (positiveElapsedSeconds * computePowerIncreasePerSecond);
+
+        return {
+            jobsAutomated: currentJobsAutomated,
+            jobsCreated: currentJobsCreated,
+            computePower: currentComputePower
+        };
+    }
+
+    // --- Initialization and Live Update ---
+    let currentValues = calculateCurrentValues(); // Calculate initial values on load
+
+    // Function to update display elements
+    function updateDisplay() {
+        jobsAutomatedElem.textContent = Math.floor(currentValues.jobsAutomated).toLocaleString();
+        jobsCreatedElem.textContent = Math.floor(currentValues.jobsCreated).toLocaleString();
+        computePowerElem.textContent = currentValues.computePower.toExponential(2);
+    }
+
+    // Initial display update
+    updateDisplay();
+
+    // Live ticking using setInterval
     setInterval(() => {
-        // Calculate increment based on interval duration
         const intervalSeconds = updateInterval / 1000;
 
-        jobsAutomated += jobsAutomatedRatePerSecond * intervalSeconds;
-        jobsCreated += jobsCreatedRatePerSecond * intervalSeconds;
-        computePower += computePowerIncreasePerSecond * intervalSeconds;
+        // Increment current values based on the interval
+        currentValues.jobsAutomated += jobsAutomatedRatePerSecond * intervalSeconds;
+        currentValues.jobsCreated += jobsCreatedRatePerSecond * intervalSeconds;
+        currentValues.computePower += computePowerIncreasePerSecond * intervalSeconds;
 
-        // Update DOM
-        jobsAutomatedElem.textContent = Math.floor(jobsAutomated).toLocaleString();
-        jobsCreatedElem.textContent = Math.floor(jobsCreated).toLocaleString();
-        // Format compute power using toExponential for large numbers
-        computePowerElem.textContent = computePower.toExponential(2);
+        // Update the display
+        updateDisplay();
 
     }, updateInterval);
 
-    // --- AI Impact Estimator ---
+
+    // --- AI Impact Estimator (remains the same) ---
     const impactButton = document.getElementById('impact-button');
     const jobTitleInput = document.getElementById('job-title-input');
     const impactResultElem = document.getElementById('impact-result');
@@ -51,10 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         impactResultElem.textContent = `Estimated Automation Risk: ${risk}`;
     });
-
-    // --- Initial Local Test ---
-    // You can manually test the impact function by calling it here or just rely on button click
-    console.log("AI Takeover Clock script loaded.");
-    // Test initial calculation (optional)
     impactResultElem.textContent = ""; // Clear initial state
+    console.log("AI Takeover Clock script loaded and initialized.");
 });
