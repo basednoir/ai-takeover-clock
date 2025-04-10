@@ -72,6 +72,10 @@ h1 {
     color: #ff851b; /* Neon Orange */
 }
 
+#ai-investment-counter {
+    color: #FFFF33; /* Neon Yellow */
+}
+
 .impact-section label {
      display: block;
      margin-bottom: 10px;

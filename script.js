@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const jobsAutomatedElem = document.getElementById('jobs-automated-counter');
     const jobsCreatedElem = document.getElementById('jobs-created-counter');
     const computePowerElem = document.getElementById('compute-power-counter');
+    const aiInvestmentElem = document.getElementById('ai-investment-counter'); // Added
     // Add elements for future counters here later...
 
     // --- Configuration ---
@@ -13,11 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseJobsAutomated = 0;   // WEF 2025 context start
     const baseJobsCreated = 0;     // WEF 2025 context start
     const baseComputePower = 3.8e25; // Based on GPT-4o training benchmark (38B PetaFLOPS)
+    const baseAiInvestment = 0;    // Tracking investment since epoch date // Added
 
     // 3. Define Rates Per Second
     const jobsAutomatedRatePerSecond = 0.486; // WEF Displacement Rate 2025-2030
     const jobsCreatedRatePerSecond = 0.898; // WEF Creation Rate 2025-2030
     const computePowerIncreasePerSecond = 5.15e18; // Derived from 5-month doubling time & base=3.8e25
+    const aiInvestmentRatePerSecond = 7554;  // Derived from Q1'25 VC data (~$7.5k/sec) // Added
 
     // Add base values and rates for future counters here later...
 
@@ -35,12 +38,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentJobsAutomated = baseJobsAutomated + (positiveElapsedSeconds * jobsAutomatedRatePerSecond);
         const currentJobsCreated = baseJobsCreated + (positiveElapsedSeconds * jobsCreatedRatePerSecond);
         const currentComputePower = baseComputePower + (positiveElapsedSeconds * computePowerIncreasePerSecond);
+        const currentAiInvestment = baseAiInvestment + (positiveElapsedSeconds * aiInvestmentRatePerSecond); // Added
         // Add calculations for future counters here later...
 
         return {
             jobsAutomated: currentJobsAutomated,
             jobsCreated: currentJobsCreated,
-            computePower: currentComputePower
+            computePower: currentComputePower,
+            aiInvestment: currentAiInvestment // Added
             // Add future counters here later...
         };
     }
@@ -53,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         jobsAutomatedElem.textContent = Math.floor(currentValues.jobsAutomated).toLocaleString();
         jobsCreatedElem.textContent = Math.floor(currentValues.jobsCreated).toLocaleString();
         computePowerElem.textContent = currentValues.computePower.toExponential(2);
+        aiInvestmentElem.textContent = '$' + Math.floor(currentValues.aiInvestment).toLocaleString(); // Added
         // Add updates for future counter elements here later...
     }
 
@@ -67,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentValues.jobsAutomated += jobsAutomatedRatePerSecond * intervalSeconds;
         currentValues.jobsCreated += jobsCreatedRatePerSecond * intervalSeconds;
         currentValues.computePower += computePowerIncreasePerSecond * intervalSeconds;
+        currentValues.aiInvestment += aiInvestmentRatePerSecond * intervalSeconds; // Added
         // Add increments for future counters here later...
 
         // Update the display
