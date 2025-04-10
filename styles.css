@@ -76,6 +76,10 @@ h1 {
     color: #FFFF33; /* Neon Yellow */
 }
 
+#ai-patents-counter {
+    color: #FF33FF; /* Neon Pink */
+}
+
 .impact-section label {
      display: block;
      margin-bottom: 10px;
