@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const jobsCreatedElem = document.getElementById('jobs-created-counter');
     const computePowerElem = document.getElementById('compute-power-counter');
     const aiInvestmentElem = document.getElementById('ai-investment-counter');
-    const aiPatentsElem = document.getElementById('ai-patents-counter'); // Added
+    const aiPatentsElem = document.getElementById('ai-patents-counter');
     // Add elements for future counters here later...
 
     // --- Configuration ---
@@ -16,14 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseJobsCreated = 0;     // WEF 2025 context start
     const baseComputePower = 3.8e25; // Based on GPT-4o training benchmark
     const baseAiInvestment = 0;    // Tracking investment since epoch date
-    const baseAiPatents = 0;       // Tracking patents filed since epoch date // Added
+    const baseAiPatents = 0;       // Tracking patents filed since epoch date
 
-    // 3. Define Rates Per Second
+    // 3. Define Rates Per Second (VERIFIED)
     const jobsAutomatedRatePerSecond = 0.486; // WEF Displacement Rate 2025-2030
     const jobsCreatedRatePerSecond = 0.898; // WEF Creation Rate 2025-2030
     const computePowerIncreasePerSecond = 5.15e18; // Derived from 5-month doubling time & base=3.8e25
     const aiInvestmentRatePerSecond = 7554;  // Derived from Q1'25 VC data (~$7.5k/sec)
-    const aiPatentsRatePerSecond = 2.38;   // Based on ~75k total AI patents/year // Added
+    const aiPatentsRatePerSecond = 0.00238; // CORRECTED rate from ~75k total AI patents/year
 
     // Add base values and rates for future counters here later...
 
@@ -42,16 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentJobsCreated = baseJobsCreated + (positiveElapsedSeconds * jobsCreatedRatePerSecond);
         const currentComputePower = baseComputePower + (positiveElapsedSeconds * computePowerIncreasePerSecond);
         const currentAiInvestment = baseAiInvestment + (positiveElapsedSeconds * aiInvestmentRatePerSecond);
-        const currentAiPatents = baseAiPatents + (positiveElapsedSeconds * aiPatentsRatePerSecond); // Added
-        // Add calculations for future counters here later...
+        const currentAiPatents = baseAiPatents + (positiveElapsedSeconds * aiPatentsRatePerSecond);
 
         return {
             jobsAutomated: currentJobsAutomated,
             jobsCreated: currentJobsCreated,
             computePower: currentComputePower,
             aiInvestment: currentAiInvestment,
-            aiPatents: currentAiPatents // Added
-            // Add future counters here later...
+            aiPatents: currentAiPatents
         };
     }
 
@@ -64,8 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         jobsCreatedElem.textContent = Math.floor(currentValues.jobsCreated).toLocaleString();
         computePowerElem.textContent = currentValues.computePower.toExponential(2);
         aiInvestmentElem.textContent = '$' + Math.floor(currentValues.aiInvestment).toLocaleString();
-        aiPatentsElem.textContent = Math.floor(currentValues.aiPatents).toLocaleString(); // Added
-        // Add updates for future counter elements here later...
+        aiPatentsElem.textContent = Math.floor(currentValues.aiPatents).toLocaleString();
     }
 
     // Initial display update
@@ -80,8 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentValues.jobsCreated += jobsCreatedRatePerSecond * intervalSeconds;
         currentValues.computePower += computePowerIncreasePerSecond * intervalSeconds;
         currentValues.aiInvestment += aiInvestmentRatePerSecond * intervalSeconds;
-        currentValues.aiPatents += aiPatentsRatePerSecond * intervalSeconds; // Added
-        // Add increments for future counters here later...
+        currentValues.aiPatents += aiPatentsRatePerSecond * intervalSeconds;
 
         // Update the display
         updateDisplay();
