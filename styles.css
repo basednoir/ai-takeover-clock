@@ -80,6 +80,10 @@ h1 {
     color: #FF33FF; /* Neon Pink */
 }
 
+#ai-content-counter {
+    color: #33FFFF; /* Neon Light Blue */
+}
+
 .impact-section label {
      display: block;
      margin-bottom: 10px;
