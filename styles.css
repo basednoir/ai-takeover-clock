@@ -31,47 +31,47 @@ h1 {
 /* --- Grid Layout for Counters --- */
 #clock-container {
     display: grid;
-    /* MODIFIED: Increased min width */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-    gap: 15px; 
-    width: 95%; 
-    max-width: 900px; 
-    margin: 0 auto; 
+    /* MODIFIED: Explicit 8 columns */
+    grid-template-columns: repeat(8, 1fr);
+    gap: 15px;
+    width: 95%;
+    max-width: 900px; /* Can adjust this if needed */
+    margin: 0 auto;
 }
 
 /* --- Smaller Counter Styling --- */
 .counter {
     background-color: #1a1a1a;
     border: 1px solid #333333;
-    border-radius: 6px; 
-    padding: 10px 15px; 
+    border-radius: 6px;
+    padding: 10px 15px;
     text-align: center;
     overflow-wrap: break-word;
-    display: flex; /* Use flex to help vertical alignment if needed */
+    display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Pushes label up, value down */
-    min-height: 100px; /* ADDED: Ensure consistent height */
+    justify-content: space-between;
+    min-height: 100px; /* Consistent height */
 }
 
 .label {
     display: block;
-    font-size: 0.85em; 
-    margin-bottom: 5px; 
+    font-size: 0.85em;
+    margin-bottom: 5px;
     color: #bbbbbb;
     font-weight: bold;
-    min-height: 2.5em; /* Allow space for multi-line labels */
-    display: flex; 
+    min-height: 2.5em;
+    display: flex;
     align-items: center;
     justify-content: center;
-    flex-grow: 1; /* Allow label to take up space */
+    flex-grow: 1;
 }
 
 .value {
-    font-size: 1.6em; 
+    font-size: 1.6em;
     font-weight: bold;
     display: block;
-    line-height: 1.2; 
-    min-height: 1.5em; 
+    line-height: 1.2;
+    min-height: 1.5em;
 }
 
 /* Specific counter colors */
@@ -82,18 +82,41 @@ h1 {
 #ai-patents-counter { color: #FF33FF; }
 #ai-content-counter { color: #33FFFF; }
 
+/* --- Specific Grid Spanning Rules --- */
+/* Row 1 Items: Each spans 2 of 8 columns */
+.counter.jobs-automated,
+.counter.jobs-created,
+.counter.compute-power,
+.counter.ai-patents {
+    grid-column: span 2;
+}
+
+/* Row 2 Items: Span 3, 2, 3 of 8 columns */
+.counter.ai-content {
+    grid-column: span 3; /* Span first 3 columns */
+}
+
+.counter.ethical-concern {
+    grid-column: span 2; /* Span middle 2 columns */
+}
+
+.counter.ai-investment {
+    grid-column: span 3; /* Span last 3 columns */
+}
+
+
 /* --- Styles for Pulse Indicator --- */
 .pulse-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 35px; 
-    margin-top: auto; /* Push to bottom within flex container */
-    padding-top: 5px; /* Add some space above pulse */
+    min-height: 35px;
+    margin-top: auto;
+    padding-top: 5px;
 }
 
 #ethical-pulse-indicator {
-    width: 25px; 
+    width: 25px;
     height: 25px;
     background-color: #FF851B;
     border-radius: 50%;
@@ -115,27 +138,16 @@ h1 {
     border: 1px solid #333333;
     border-radius: 8px;
     padding: 15px 25px;
-    margin: 30px auto 20px auto; 
+    margin: 30px auto 20px auto;
     width: 90%;
     max-width: 600px;
     text-align: center;
 }
 
-.impact-section label {
-     display: block; margin-bottom: 10px; color: #bbbbbb; font-weight: bold;
-}
-
-.impact-section input[type="text"] {
-    padding: 10px; margin-right: 10px; border: 1px solid #555; background-color: #333;
-    color: #fff; border-radius: 4px; min-width: 200px; margin-bottom: 10px;
-}
-
-.impact-section button {
-    padding: 10px 15px; background-color: #00ffde; color: #000000; border: none;
-    border-radius: 4px; cursor: pointer; font-weight: bold; transition: background-color 0.3s ease;
-    margin-bottom: 10px;
-}
-
+/* ... impact styles ... */
+.impact-section label { display: block; margin-bottom: 10px; color: #bbbbbb; font-weight: bold; }
+.impact-section input[type="text"] { padding: 10px; margin-right: 10px; border: 1px solid #555; background-color: #333; color: #fff; border-radius: 4px; min-width: 200px; margin-bottom: 10px; }
+.impact-section button { padding: 10px 15px; background-color: #00ffde; color: #000000; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: background-color 0.3s ease; margin-bottom: 10px; }
 .impact-section button:hover { background-color: #39ff14; }
 #impact-result { margin-top: 15px; font-size: 1.1em; font-weight: bold; min-height: 1.5em; }
 /* ---- End of Impact Section Styles ---- */
@@ -147,7 +159,7 @@ h1 {
     display: none; z-index: 999;
 }
 
-#about-modal { 
+#about-modal {
     position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80%;
     max-width: 600px; max-height: 80vh; overflow-y: auto; background-color: #2a2a2a;
     color: #ccc; padding: 30px; border-radius: 8px; border: 1px solid #555;
