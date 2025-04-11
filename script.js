@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const baseComputePower = 3.8e25; // GPT-4o benchmark
     const baseAiInvestment = 0;
     const baseAiPatents = 0;
-    const baseAiContent = 0; // Base words (JS will display in Billions)
+    const baseAiContent = 0;
 
     // Rates Per Second
     const jobsAutomatedRatePerSecond = 0.486; // WEF
@@ -63,8 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
         computePowerElem.textContent = currentValues.computePower.toExponential(2);
         aiInvestmentElem.textContent = '$' + Math.floor(currentValues.aiInvestment).toLocaleString();
         aiPatentsElem.textContent = Math.floor(currentValues.aiPatents).toLocaleString();
-        // Display AI Content in Billions for better readability
-        aiContentElem.textContent = (currentValues.aiContent / 1e9).toFixed(2).toLocaleString();
+        // MODIFIED: Display full number for AI Content
+        aiContentElem.textContent = Math.floor(currentValues.aiContent).toLocaleString(); 
     }
 
     updateDisplay(); // Initial display
@@ -109,29 +109,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalBtn = document.getElementById('close-about-modal');
 
     function openModal() {
-        modalOverlay.style.display = 'block';
-        aboutModal.style.display = 'block';
+        if(modalOverlay) modalOverlay.style.display = 'block';
+        if(aboutModal) aboutModal.style.display = 'block';
     }
 
     function closeModal() {
-        modalOverlay.style.display = 'none';
-        aboutModal.style.display = 'none';
+        if(modalOverlay) modalOverlay.style.display = 'none';
+        if(aboutModal) aboutModal.style.display = 'none';
     }
 
-    // Event Listeners
+    // Event Listeners (Added checks for element existence)
     if(aboutTriggerLink) {
         aboutTriggerLink.addEventListener('click', (e) => {
             e.preventDefault(); // Prevent link from jumping to top
             openModal();
         });
+    } else {
+        console.error("About trigger link not found");
     }
 
     if(closeModalBtn) {
         closeModalBtn.addEventListener('click', closeModal);
+    } else {
+        console.error("Close modal button not found");
     }
 
     if(modalOverlay) {
         modalOverlay.addEventListener('click', closeModal); // Close if overlay is clicked
+    } else {
+        console.error("Modal overlay not found");
     }
 
 }); // End of DOMContentLoaded
