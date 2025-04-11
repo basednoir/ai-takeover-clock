@@ -15,40 +15,33 @@
     <div id="clock-container">
         <div class="counter jobs-automated">
             <span class="label">Jobs Automated:</span>
-            <span id="jobs-automated-counter" class="value">0</span>
-        </div>
+            <span id="jobs-automated-counter" class="value"></span> </div>
         <div class="counter jobs-created">
             <span class="label">AI Jobs Created:</span>
-            <span id="jobs-created-counter" class="value">0</span>
-        </div>
+            <span id="jobs-created-counter" class="value"></span> </div>
         <div class="counter compute-power">
             <span class="label">AI Compute Power (FLOPS):</span>
-            <span id="compute-power-counter" class="value">1.00e+15</span> </div>
-        <div class="impact-section">
-            <label for="job-title-input">Your Job Title:</label>
-            <input type="text" id="job-title-input" placeholder="e.g., Software Engineer, Artist">
-            <button id="impact-button">Estimate My AI Impact Risk</button>
-            <p id="impact-result"></p>
-        </div>
+            <span id="compute-power-counter" class="value"></span> </div>
         <div class="counter ai-investment">
-            <span class="label">AI Investment Dollars (Since Jan 1, 2025):</span>
-            <span id="ai-investment-counter" class="value">$0</span>
-        </div>
+            <span class="label">AI Investment $ (Since Jan 1 '25):</span> <span id="ai-investment-counter" class="value"></span> </div>
         <div class="counter ai-patents">
-            <span class="label">AI Patents Filed (Since Jan 1, 2025):</span>
-            <span id="ai-patents-counter" class="value">0</span>
-        </div>
+            <span class="label">AI Patents Filed (Since Jan 1 '25):</span> <span id="ai-patents-counter" class="value"></span> </div>
         <div class="counter ai-content">
-            <span class="label">AI-Generated Content (Est. Words Since Jan 1, 2025):</span>
-            <span id="ai-content-counter" class="value">0</span>
-        </div>
-        <div class="counter ethical-concern">
-            <span class="label">Ethical Concern Level (Visual):</span>
-            <div class="pulse-container">
+            <span class="label">AI Content (Est. Words x10^9):</span> <span id="ai-content-counter" class="value"></span> </div>
+         <div class="counter ethical-concern">
+            <span class="label">Ethical Concern Level:</span> <div class="pulse-container">
                 <div id="ethical-pulse-indicator"></div>
             </div>
         </div>
-    </div> <div class="about-section">
+        </div> <div class="impact-section">
+        <label for="job-title-input">Your Job Title:</label>
+        <input type="text" id="job-title-input" placeholder="e.g., Software Engineer, Artist">
+        <button id="impact-button">Estimate My AI Impact Risk</button>
+        <p id="impact-result"></p>
+    </div>
+
+    <div id="about-modal" class="modal">
+        <button id="close-about-modal" class="close-modal-btn">&times;</button>
         <h2>About This Clock & Data</h2>
         <p>
             The AI Takeover Clock provides dynamic estimates intended to illustrate the potential scale and pace of AI's global impact. The numbers displayed are calculated using a time-based model beginning <strong>January 1st, 2025</strong>.
@@ -60,8 +53,12 @@
             Please note these figures are <strong>illustrative estimates and simulations</strong>, not precise real-time data feeds. Data for metrics like AI-Generated Content and the Ethical Concern level involve significant estimation due to inherent quantification challenges. The methodology and underlying estimates may be updated periodically based on new research.
         </p>
     </div>
+
     <footer>
+        <a href="#" id="about-trigger-link">About This Clock / Sources</a>
         </footer>
+
+    <div id="modal-overlay"></div>
 
     <script src="script.js"></script>
 </body>
