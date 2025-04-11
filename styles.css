@@ -124,11 +124,6 @@ h1 {
     animation: pulseAnimation 3s ease-in-out infinite;
 }
 
-@keyframes pulseAnimation {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 133, 27, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 8px 15px rgba(255, 133, 27, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 133, 27, 0); }
-}
 /* ---- End of Pulse Styles ---- */
 
 
@@ -187,4 +182,69 @@ footer {
 
 footer a#about-trigger-link { color: #00ffde; text-decoration: underline; cursor: pointer; }
 footer a#about-trigger-link:hover { color: #39ff14; }
+
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 600px) { /* Apply styles for screens 600px wide or less */
+
+    h1 { font-size: 2em; } /* Slightly smaller heading */
+    .tagline { font-size: 1em; }
+
+    #clock-container {
+        grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns */
+        gap: 10px; /* Slightly smaller gap */
+        width: 100%; /* Use full available width */
+        max-width: none; /* Remove desktop max-width */
+    }
+
+    /* Reset specific column spans defined for desktop */
+    .counter.jobs-automated,
+    .counter.jobs-created,
+    .counter.compute-power,
+    .counter.ai-patents,
+    .counter.ai-content,
+    .counter.ethical-concern,
+    .counter.ai-investment {
+        grid-column: auto; /* Let items flow naturally into 2 columns */
+    }
+
+    .counter {
+        min-height: 90px; /* Slightly reduce min-height */
+        padding: 8px 10px; /* Slightly less padding */
+    }
+
+    .label {
+        font-size: 0.8em; /* Slightly smaller label */
+        min-height: 2em; /* Adjust if needed */
+    }
+
+    .value {
+        font-size: 1.3em; /* Significantly smaller value font for mobile */
+        line-height: 1.1;
+    }
+
+    /* Adjust pulse size maybe */
+    .pulse-container { min-height: 30px; }
+    #ethical-pulse-indicator { width: 20px; height: 20px; }
+
+    /* Make impact section slightly smaller */
+    .impact-section { padding: 10px 15px; margin-top: 20px; } /* Reduced top margin */
+    .impact-section input[type="text"] { min-width: 150px; }
+
+    /* Make modal padding slightly smaller */
+    #about-modal { padding: 20px; width: 90%; } /* Adjust width for mobile */
+    #about-modal h2 { font-size: 1.2em; }
+    #about-modal p { font-size: 0.85em; }
+    .close-modal-btn { font-size: 1.8em; top: 5px; right: 10px; }
+
+}
+/* --- End of Mobile Responsiveness --- */
+
+
+/* ---- Pulse Animation Definition ---- */
+@keyframes pulseAnimation {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 133, 27, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 8px 15px rgba(255, 133, 27, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 133, 27, 0); }
+}
 /* ---- End of File ---- */
