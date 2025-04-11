@@ -144,6 +144,37 @@ h1 {
     min-height: 1.5em; /* Reserve space */
 }
 
+/* ---- Styles for About Section ---- */
+.about-section {
+    margin-top: 40px; /* Add some space above it */
+    margin-bottom: 20px;
+    padding: 15px;
+    width: 90%;
+    max-width: 600px; /* Match the clock container width */
+    text-align: center;
+    color: #aaa; /* Use a slightly dimmer color than main text */
+    font-size: 0.9em; /* Make text slightly smaller */
+    line-height: 1.6; /* Improve readability */
+    border-top: 1px solid #333; /* Optional separator line */
+    padding-top: 20px; /* Space below the separator */
+}
+
+.about-section h2 {
+    color: #00ffde; /* Match main heading color */
+    font-size: 1.4em;
+    margin-bottom: 15px;
+}
+
+.about-section p {
+    margin-bottom: 10px; /* Space between paragraphs */
+}
+
+.about-section strong {
+    color: #ffffff; /* Make emphasized text white */
+    font-weight: bold;
+}
+/* ---- End of About Section Styles ---- */
+
 footer {
     margin-top: 40px;
     color: #555555;
